@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Pomodoro.scss';
 import { useTimer } from 'react-timer-hook';
 
 export enum Status {
@@ -16,6 +17,11 @@ export function Pomodoro({ workTime, shortBreakTime, longBreakTime }: { workTime
   const {
     seconds, minutes, isRunning, pause, resume, restart,
   } = useTimer({ expiryTimestamp: initialStartTime, onExpire: () => onExpire() });
+  const statusNames = new Map([
+    [Status.Working, "Focus"],
+    [Status.ShortBreak, "Relax"],
+    [Status.LongBreak, "Long Break"]
+  ]);
 
   useEffect(pause, [timerExpired])
 
@@ -72,13 +78,16 @@ export function Pomodoro({ workTime, shortBreakTime, longBreakTime }: { workTime
     return value.toString().padStart(2, '0');
   }
 
+  function statusName(status: Status): string {
+    return statusNames.get(status) ?? "Unknown";
+  }
+
   return (
-    <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: '100px' }}>
-        <span>{timer(minutes, seconds)}</span>
-      </div>
-      {!isRunning && <button onClick={resume}>{'Start'}</button>}
-      {isRunning && <button onClick={pause}>Pause</button>}
+    <div className="Pomodoro">
+      <h1 className="Status">{statusName(status(isWorking, workIntervalsCompleted))}</h1>
+      <h1 className="Timer">{timer(minutes, seconds)}</h1>
+      {!isRunning && <button className="Button" onClick={resume}>{'Start'}</button>}
+      {isRunning && <button className="Button" onClick={pause}>Pause</button>}
     </div>
   );
 }

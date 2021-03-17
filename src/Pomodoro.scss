@@ -1,0 +1,43 @@
+@import './variables.scss';
+
+.Pomodoro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  padding: 0 3rem;
+
+  h1 {
+    margin: 0;
+    font-size: 6rem;
+    font-weight: bold;
+    color: #2EBFA5;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .Status {
+    font-size: 4rem;
+  }
+
+  .Timer {
+    padding: 2rem;
+  }
+
+  .Button {
+    background-color: #7DDE92;
+    border: none;
+    color: white;
+    padding: 1.5rem 3rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

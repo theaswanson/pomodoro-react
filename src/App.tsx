@@ -1,30 +1,21 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { Pomodoro } from './Pomodoro';
 
 function App() {
-  const [workTime] = useState(0.1);
-  const [shortBreakTime] = useState(0.05);
-  const [longBreakTime] = useState(0.2);
+  const [workTime] = useState(25);
+  const [shortBreakTime] = useState(5);
+  const [longBreakTime] = useState(15);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Pomodoro workTime={workTime} shortBreakTime={shortBreakTime} longBreakTime={longBreakTime} />
-      </header>
+    <div className="Body">
+      <div className="Header">
+        <h1 className="noselect">Pomodoro</h1>
+      </div>
+      <Pomodoro workTime={workTime} shortBreakTime={shortBreakTime} longBreakTime={longBreakTime} />
+      <div className="Footer">
+        <h1 className="noselect">Options</h1>
+      </div>
     </div>
   );
 }
